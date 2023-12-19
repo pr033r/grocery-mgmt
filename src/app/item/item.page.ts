@@ -1,16 +1,24 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IonicModule, Platform } from '@ionic/angular';
-import { DataService, Message } from '../services/data.service';
+import { DataService, PurchaseItem } from '../services/data.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+  standalone: true,
   selector: 'app-view-message',
-  templateUrl: './view-message.page.html',
-  styleUrls: ['./view-message.page.scss'],
+  templateUrl: './item.page.html',
+  styleUrls: ['./item.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+  ]
 })
-export class ViewMessagePage implements OnInit {
-  public message!: Message;
+export class ItemPage implements OnInit {
+  public message!: PurchaseItem;
   private data = inject(DataService);
   private activatedRoute = inject(ActivatedRoute);
   private platform = inject(Platform);

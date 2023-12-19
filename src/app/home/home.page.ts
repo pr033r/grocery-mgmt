@@ -1,17 +1,25 @@
-import { Component, inject } from '@angular/core';
-import { RefresherCustomEvent } from '@ionic/angular';
-import { MessageComponent } from '../message/message.component';
-
-import { DataService, Message } from '../services/data.service';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {IonicModule, RefresherCustomEvent} from '@ionic/angular';
+import { DataService, PurchaseItem } from '../services/data.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import {ListItemComponent} from "../list-item/list-item.component";
 
 @Component({
+  standalone: true,
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styles: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    ListItemComponent,
+  ]
 })
 export class HomePage {
   private data = inject(DataService);
-  constructor() {}
 
   refresh(ev: any) {
     setTimeout(() => {
@@ -19,7 +27,7 @@ export class HomePage {
     }, 3000);
   }
 
-  getMessages(): Message[] {
+  getMessages(): PurchaseItem[] {
     return this.data.getMessages();
   }
 }

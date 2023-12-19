@@ -1,0 +1,18 @@
+@if (item) {
+  <ion-item [routerLink]="'/message/' + item.id" [detail]="false">
+    <div slot="start" [class]="!item.isAtHome ? 'dot dot-at-home' : ' dot dot-not-at-home'"></div>
+    <ion-label class="ion-text-wrap">
+      <h2>
+        {{ item.name }}
+        <span class="date">
+          <ion-note>{{ item.date }}</ion-note>
+          @if (isIos()) {
+            <ion-icon aria-hidden="true" name="chevron-forward" size="small"></ion-icon>
+          }
+        </span>
+      </h2>
+      <h3>{{ item.description }}</h3>
+    </ion-label>
+  </ion-item>
+}
+
